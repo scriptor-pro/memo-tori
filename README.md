@@ -26,10 +26,68 @@ sudo apt update
 sudo apt install -y python3-venv python3-pip python3-gi gir1.2-gtk-3.0 gir1.2-webkit2-4.0
 ```
 
+## Linux compatibility
+
+Memo Tori targets Linux distributions that provide GTK3 + WebKit2 + Python 3.
+
+Known compatible families:
+
+- Debian 11/12 and derivatives (MX Linux 23, Ubuntu 20.04+, Linux Mint)
+- Fedora 36+
+- Arch / Manjaro
+
+Package hints:
+
+Debian / Ubuntu / Mint / MX:
+
+```bash
+sudo apt install -y python3-venv python3-pip python3-gi gir1.2-gtk-3.0 gir1.2-webkit2-4.0
+```
+
+Note: on Debian/MX, use the system Python 3.11 for the venv if your default `python3` points to a newer version:
+
+```bash
+/usr/bin/python3.11 -m venv --system-site-packages .venv
+```
+
+Fedora:
+
+```bash
+sudo dnf install -y python3 python3-pip python3-gobject gtk3 webkit2gtk4.0
+```
+
+Arch / Manjaro:
+
+```bash
+sudo pacman -S python python-pip python-gobject gtk3 webkit2gtk
+```
+
+## Windows (installer)
+
+Prerequisites on Windows:
+
+- Python 3.10+ installed and on PATH
+- WebView2 Runtime installed (usually preinstalled on Windows 11)
+- Inno Setup installed (so `iscc.exe` is on PATH)
+
+Build the installer from PowerShell:
+
+```powershell
+cd C:\path\to\memo-tori
+$env:VERSION = "0.1.0"
+.\scripts\build-windows-installer.ps1
+```
+
+Output:
+
+```
+dist\memo-tori-0.1.0-setup.exe
+```
+
 ## Install
 
 ```bash
-cd /home/Baudouin/Documents/Projets/Memo-Tori
+cd /path/to/memo-tori
 python3 -m venv --system-site-packages .venv
 . .venv/bin/activate
 pip install -r requirements.txt
@@ -49,9 +107,23 @@ cd /home/Baudouin/Documents/Projets/Memo-Tori
 python3 app.py
 ```
 
+## Desktop integration
+
+To add Memo Tori to your app launcher:
+
+```bash
+mkdir -p ~/.local/share/applications
+cp /home/Baudouin/Documents/Projets/Memo-Tori/memo-tori.desktop ~/.local/share/applications/
+```
+
 ## Data format
 
-Ideas are stored in `data/ideas.txt` using plain text blocks separated by a line containing:
+Ideas are stored in:
+
+- Linux: `~/.local/share/memo-tori/ideas.txt` (or `$XDG_DATA_HOME/memo-tori/ideas.txt`)
+- Windows: `%APPDATA%\\memo-tori\\ideas.txt`
+
+using plain text blocks separated by a line containing:
 
 ```
 ---
@@ -66,6 +138,8 @@ Second idea text
 ```
 
 The 300-character preview is only visual. The full text is stored.
+
+To override the storage location, set `MEMO_TORI_DATA_DIR` before launch.
 
 ## Project structure
 

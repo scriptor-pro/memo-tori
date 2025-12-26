@@ -1,1 +1,8 @@
 retrouver la spire de la cuve Jobo
+---
+régler l'authentification github - via browser ça commence à devenir pénible - clé pgp ou quelque chose ?
+---
+format ID note dans 11ty-jardin
+
+---
+Trouver un pull bien chaud et confortable

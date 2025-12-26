@@ -21,6 +21,8 @@ function updateCounter() {
 function showForm() {
   formView.classList.remove("hidden");
   listView.classList.add("hidden");
+  textarea.focus();
+  setTimeout(() => textarea.focus(), 50);
 }
 
 function showList() {

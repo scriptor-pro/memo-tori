@@ -1,0 +1,8 @@
+Package: memo-tori
+Version: 0.1.0
+Section: utils
+Priority: optional
+Architecture: amd64
+Depends: python3, python3-gi, gir1.2-gtk-3.0, gir1.2-webkit2-4.0
+Maintainer: Memo Tori <devnull@localhost>
+Description: Tiny desktop app to capture a single idea

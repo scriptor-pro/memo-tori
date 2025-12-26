@@ -1,9 +1,31 @@
+import os
+import sys
 from pathlib import Path
 
 import webview
 
 BASE_DIR = Path(__file__).resolve().parent
-DATA_DIR = BASE_DIR / "data"
+APP_ID = "memo-tori"
+
+
+def _resolve_data_dir():
+    env_dir = os.environ.get("MEMO_TORI_DATA_DIR")
+    if env_dir:
+        return Path(env_dir).expanduser()
+    if sys.platform.startswith("win"):
+        appdata = os.environ.get("APPDATA")
+        if appdata:
+            return Path(appdata) / APP_ID
+        return Path.home() / "AppData" / "Roaming" / APP_ID
+    xdg_data_home = os.environ.get("XDG_DATA_HOME")
+    if xdg_data_home:
+        base_dir = Path(xdg_data_home)
+    else:
+        base_dir = Path.home() / ".local" / "share"
+    return base_dir / APP_ID
+
+
+DATA_DIR = _resolve_data_dir()
 DATA_FILE = DATA_DIR / "ideas.txt"
 SEPARATOR = "\n---\n"
 MAX_CHARS = 5000
