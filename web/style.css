@@ -1,0 +1,169 @@
+:root {
+  --bg: #f4f1ea;
+  --bg-accent: #efe2d0;
+  --ink: #1f1a14;
+  --muted: #6b6157;
+  --edge: #d7cbb8;
+  --accent: #b85b2d;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Georgia", "Times New Roman", serif;
+  color: var(--ink);
+  background: radial-gradient(circle at top left, #f7efe2, var(--bg));
+  min-height: 100vh;
+}
+
+.app {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 32px 24px 48px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.brand h1 {
+  margin: 0;
+  font-size: 2.6rem;
+  letter-spacing: 0.02em;
+}
+
+.brand p {
+  margin: 6px 0 0;
+  color: var(--muted);
+}
+
+.panel {
+  background: #fffdf9;
+  border: 1px solid var(--edge);
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+}
+
+.label {
+  display: block;
+  margin-bottom: 12px;
+  font-size: 1.1rem;
+}
+
+textarea {
+  width: 100%;
+  border-radius: 12px;
+  border: 1px solid var(--edge);
+  padding: 14px;
+  font-size: 1rem;
+  background: #fff;
+  min-height: 180px;
+  resize: vertical;
+}
+
+textarea:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.meta {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 8px;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+button {
+  margin-top: 16px;
+  padding: 12px 18px;
+  border-radius: 999px;
+  border: none;
+  background: var(--accent);
+  color: #fff;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.link {
+  background: none;
+  color: var(--accent);
+  border: none;
+  padding: 8px 0;
+  margin-left: 12px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.error {
+  color: #b00020;
+  margin: 12px 0 0;
+  min-height: 20px;
+}
+
+.list-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.list-header h2 {
+  margin: 0;
+}
+
+#ideas {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.idea-card {
+  background: #fff;
+  border: 1px solid var(--edge);
+  border-radius: 12px;
+  padding: 14px;
+}
+
+.idea-card p {
+  margin: 0 0 12px;
+  white-space: pre-wrap;
+}
+
+.idea-card label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--muted);
+}
+
+.empty {
+  margin: 16px 0 0;
+  color: var(--muted);
+}
+
+.hidden {
+  display: none;
+}
+
+@media (max-width: 600px) {
+  .app {
+    padding: 24px 16px 40px;
+  }
+
+  button {
+    width: 100%;
+  }
+
+  .link {
+    margin-left: 0;
+  }
+}

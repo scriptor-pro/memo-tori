@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=Memo Tori
+Comment=Capture a single idea locally
+Exec=/home/Baudouin/Documents/Projets/Memo-Tori/.venv/bin/python3 /home/Baudouin/Documents/Projets/Memo-Tori/app.py
+Icon=/home/Baudouin/Documents/Projets/Memo-Tori/assets/icon.png
+Terminal=false
+Categories=Utility;
+StartupWMClass=Memo Tori
