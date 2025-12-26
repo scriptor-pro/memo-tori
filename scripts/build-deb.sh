@@ -2,7 +2,13 @@
 set -euo pipefail
 
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-VERSION="${VERSION:-0.1.0}"
+if [[ -z "${VERSION:-}" ]]; then
+  if [[ -f "$ROOT_DIR/VERSION" ]]; then
+    VERSION="$(cat "$ROOT_DIR/VERSION")"
+  else
+    VERSION="0.1.0"
+  fi
+fi
 ARCH="${ARCH:-$(dpkg --print-architecture)}"
 BUILD_DIR="$ROOT_DIR/dist"
 STAGE_DIR="$BUILD_DIR/memo-tori_${VERSION}_${ARCH}"

@@ -2,7 +2,14 @@ $ErrorActionPreference = "Stop"
 
 $root = Split-Path -Parent $PSScriptRoot
 $version = $env:VERSION
-if (-not $version) { $version = "0.1.0" }
+if (-not $version) {
+  $versionFile = Join-Path $root "VERSION"
+  if (Test-Path $versionFile) {
+    $version = (Get-Content $versionFile -Raw).Trim()
+  } else {
+    $version = "0.1.0"
+  }
+}
 
 $distDir = Join-Path $root "dist"
 $buildDir = Join-Path $distDir "memo-tori"

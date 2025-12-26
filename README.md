@@ -74,7 +74,6 @@ Build the installer from PowerShell:
 
 ```powershell
 cd C:\path\to\memo-tori
-$env:VERSION = "0.1.0"
 .\scripts\build-windows-installer.ps1
 ```
 
@@ -83,6 +82,10 @@ Output:
 ```
 dist\memo-tori-0.1.0-setup.exe
 ```
+
+## Versioning
+
+The version is stored in the `VERSION` file at the project root. Set the `VERSION` environment variable to override it for a single build.
 
 ## Install
 
@@ -151,4 +154,4 @@ To override the storage location, set `MEMO_TORI_DATA_DIR` before launch.
 
 ## License
 
-TBD
+MIT

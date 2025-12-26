@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="fr-BE">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Memo Tori</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="app">
+      <header class="brand">
+        <h1>Memo Tori</h1>
+        <p>Une idee, un geste.</p>
+      </header>
+
+      <section class="panel" id="form-view">
+        <label class="label" for="idea">Entrez votre idée</label>
+        <textarea id="idea" maxlength="5000" rows="10" placeholder="Ecrire ici..."></textarea>
+        <div class="meta">
+          <span id="counter">0 / 5000</span>
+        </div>
+        <button id="submit">Sauvegarder cette idee</button>
+        <button class="link" id="show-list">Consulter</button>
+        <p class="error" id="form-error" aria-live="polite"></p>
+      </section>
+
+      <section class="panel hidden" id="list-view">
+        <div class="list-header">
+          <h2>Idees</h2>
+          <button class="link" id="show-form">saisir</button>
+        </div>
+        <div id="ideas"></div>
+        <p class="empty" id="empty-state">Aucune idee pour le moment.</p>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
