@@ -2,7 +2,7 @@
 Type=Application
 Name=Memo Tori
 Comment=Capture a single idea locally
-Exec=/opt/memo-tori/.venv/bin/python3 /opt/memo-tori/app.py
+Exec=/opt/memo-tori/.venv/bin/python3 /opt/memo-tori/memo-tori.py
 Icon=memo-tori
 Terminal=false
 Categories=Utility;

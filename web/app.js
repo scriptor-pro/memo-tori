@@ -59,7 +59,7 @@ function renderIdeas(ideas) {
       if (!checkbox.checked) {
         return;
       }
-      const ok = window.confirm("Effacer cette idee ?");
+      const ok = window.confirm("Effacer cette idée ?");
       if (!ok) {
         checkbox.checked = false;
         return;
@@ -93,7 +93,7 @@ async function submitIdea() {
   const text = textarea.value;
   const result = await window.pywebview.api.save_idea(text);
   if (!result.ok) {
-    formError.textContent = "Impossible d'enregistrer cette idee.";
+    formError.textContent = "Impossible d'enregistrer cette idée.";
     return;
   }
   textarea.value = "";

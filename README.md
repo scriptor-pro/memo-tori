@@ -107,7 +107,7 @@ If your system `python3` is not Debian's 3.11, use it explicitly:
 ```bash
 cd /home/Baudouin/Documents/Projets/Memo-Tori
 . .venv/bin/activate
-python3 app.py
+python3 memo-tori.py
 ```
 
 ## Desktop integration
@@ -146,7 +146,7 @@ To override the storage location, set `MEMO_TORI_DATA_DIR` before launch.
 
 ## Project structure
 
-- `app.py` - Python entrypoint and storage logic
+- `memo-tori.py` - Python entrypoint and storage logic
 - `web/index.html` - UI markup
 - `web/style.css` - UI styles
 - `web/app.js` - UI logic

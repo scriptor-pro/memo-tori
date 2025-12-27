@@ -10,27 +10,28 @@
     <main class="app">
       <header class="brand">
         <h1>Memo Tori</h1>
-        <p>Une idee, un geste.</p>
+
       </header>
 
       <section class="panel" id="form-view">
-        <label class="label" for="idea">Entrez votre idée</label>
-        <textarea id="idea" maxlength="5000" rows="10" placeholder="Ecrire ici..."></textarea>
+        <!--
+        <label class="label" for="idea">Entrez votre idée</label>-->
+        <textarea id="idea" maxlength="5000" rows="10" placeholder="Ton idée :"></textarea>
         <div class="meta">
           <span id="counter">0 / 5000</span>
         </div>
-        <button id="submit">Sauvegarder cette idee</button>
-        <button class="link" id="show-list">Consulter</button>
+        <button id="submit">Sauvegarder cette idée</button>
+        <button class="secondary" id="show-list">Consulter</button>
         <p class="error" id="form-error" aria-live="polite"></p>
       </section>
 
       <section class="panel hidden" id="list-view">
         <div class="list-header">
-          <h2>Idees</h2>
-          <button class="link" id="show-form">saisir</button>
+          <h2>Idées</h2>
+          <button class="secondary" id="show-form">J'ai une nouvelle idée</button>
         </div>
         <div id="ideas"></div>
-        <p class="empty" id="empty-state">Aucune idee pour le moment.</p>
+        <p class="empty" id="empty-state">Aucune idée pour le moment.</p>
       </section>
     </main>
 
