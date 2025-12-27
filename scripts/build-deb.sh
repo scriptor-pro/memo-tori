@@ -34,6 +34,10 @@ sed \
   "$ROOT_DIR/packaging/deb/control" \
   > "$STAGE_DIR/DEBIAN/control"
 
+if [[ -f "$ROOT_DIR/packaging/deb/postinst" ]]; then
+  install -m 755 "$ROOT_DIR/packaging/deb/postinst" "$STAGE_DIR/DEBIAN/postinst"
+fi
+
 install -m 644 "$ROOT_DIR/packaging/deb/memo-tori.desktop" \
   "$STAGE_DIR/usr/share/applications/memo-tori.desktop"
 install -m 644 "$ROOT_DIR/assets/icon.png" \

@@ -13,7 +13,7 @@
 
 body {
   margin: 0;
-  font-family: "Helvetico", "Arial", sans serif;
+  font-family: "Helvetica", "Arial", sans serif;
   color: var(--ink);
   background: radial-gradient(circle at top left, #f7efe2, var(--bg));
   min-height: 100vh;

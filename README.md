@@ -119,6 +119,27 @@ mkdir -p ~/.local/share/applications
 cp /home/Baudouin/Documents/Projets/Memo-Tori/memo-tori.desktop ~/.local/share/applications/
 ```
 
+## Keyboard shortcut (Linux)
+
+Global shortcuts are configured by each desktop environment. Use the desktop entry as the target command.
+
+Command to use (when installed via .deb):
+
+```bash
+gtk-launch memo-tori
+```
+
+If you are running from source (no .deb), use the Exec line from `memo-tori.desktop`.
+
+XFCE:
+Settings Manager → Keyboard → Application Shortcuts → Add → command → assign keys.
+
+GNOME:
+Settings → Keyboard → View and Customize Shortcuts → Custom Shortcuts → Add.
+
+KDE Plasma:
+System Settings → Shortcuts → Custom Shortcuts → Edit → New → Global Shortcut → Command/URL.
+
 ## Data format
 
 Ideas are stored in:
