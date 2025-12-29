@@ -25,12 +25,12 @@ if (-not (Test-Path $venvDir)) {
 & "$venvDir\Scripts\pip" install --upgrade pip | Out-Null
 & "$venvDir\Scripts\pip" install -r "$root\requirements.txt" pyinstaller | Out-Null
 
-& "$venvDir\Scripts\pyinstaller" \
-  --noconfirm \
-  --name "memo-tori" \
-  --windowed \
-  --add-data "$root\web;web" \
-  --add-data "$root\assets;assets" \
+& "$venvDir\Scripts\pyinstaller" `
+  --noconfirm `
+  --name "memo-tori" `
+  --windowed `
+  --add-data "$root\web;web" `
+  --add-data "$root\assets;assets" `
   "$root\memo-tori.py"
 
 $exeSource = Join-Path $root "dist\memo-tori\memo-tori.exe"
