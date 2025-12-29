@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Memo Tori - A simple desktop app to capture ideas quickly. Available in English and French with universal keyboard shortcuts.">
+    <meta name="keywords" content="memo, notes, ideas, desktop app, linux, productivity, bilingual, keyboard shortcuts">
+    <meta name="author" content="Memo Tori Team">
+    
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Memo Tori - Capture Ideas Instantly">
+    <meta property="og:description" content="Simple desktop app to capture a single idea. Bilingual (EN/FR), keyboard shortcuts, plain text storage.">
+    <meta property="og:url" content="https://scriptor-pro.github.io/memo-tori/">
+    
+    <title>Memo Tori - Capture Ideas Instantly</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/scriptor-pro/memo-tori/main/assets/icon.png">
+</head>
+<body>
+    <!-- Hero Section -->
+    <header class="hero">
+        <nav class="nav">
+            <div class="nav-content">
+                <div class="logo">
+                    <img src="https://raw.githubusercontent.com/scriptor-pro/memo-tori/main/assets/icon.png" alt="Memo Tori Icon" class="logo-img">
+                    <span class="logo-text">Memo Tori</span>
+                </div>
+                <div class="nav-links">
+                    <a href="#features">Features</a>
+                    <a href="#download">Download</a>
+                    <a href="https://github.com/scriptor-pro/memo-tori/blob/main/docs/README.md">Docs</a>
+                    <a href="https://github.com/scriptor-pro/memo-tori" target="_blank" class="github-link">
+                        <svg height="24" width="24" viewBox="0 0 16 16" fill="currentColor">
+                            <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
+                        </svg>
+                        GitHub
+                    </a>
+                </div>
+            </div>
+        </nav>
+
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1 class="hero-title">Capture Ideas <span class="highlight">Instantly</span></h1>
+                <p class="hero-subtitle">A simple, fast desktop app for capturing a single idea. No complexity, no distractions—just you and your thoughts.</p>
+                <div class="hero-badges">
+                    <span class="badge">🌍 Bilingual (EN/FR)</span>
+                    <span class="badge">⌨️ Keyboard Shortcuts</span>
+                    <span class="badge">🔒 Private & Local</span>
+                </div>
+                <div class="hero-cta">
+                    <a href="#download" class="btn btn-primary">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                            <path d="M10 15l-5-5h3V4h4v6h3l-5 5z"/>
+                            <path d="M2 16h16v2H2v-2z"/>
+                        </svg>
+                        Download v0.1.4
+                    </a>
+                    <a href="https://github.com/scriptor-pro/memo-tori/blob/main/QUICKSTART.md" class="btn btn-secondary">Quick Start →</a>
+                </div>
+                <p class="version-info">Latest: v0.1.4 "Beaufix" • Released Dec 29, 2025</p>
+            </div>
+            <div class="hero-image">
+                <div class="app-window">
+                    <div class="window-header">
+                        <div class="window-buttons">
+                            <span class="btn-close"></span>
+                            <span class="btn-minimize"></span>
+                            <span class="btn-maximize"></span>
+                        </div>
+                        <div class="window-title">Memo Tori 0.1.4</div>
+                    </div>
+                    <div class="window-content">
+                        <h2 class="app-title">Memo Tori</h2>
+                        <textarea class="app-textarea" placeholder="Your idea:" readonly>Build a simple tool that helps people capture ideas without friction...</textarea>
+                        <div class="app-counter">76 / 5000</div>
+                        <button class="app-btn app-btn-primary">Save this idea</button>
+                        <button class="app-btn app-btn-secondary">Ideas list</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="container">
+            <h2 class="section-title">Why Memo Tori?</h2>
+            <p class="section-subtitle">Simple by design. Powerful when you need it.</p>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🌍</div>
+                    <h3>Bilingual Interface</h3>
+                    <p>Full English and French support with automatic language detection. Switch languages anytime.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">⌨️</div>
+                    <h3>Quick Launch</h3>
+                    <p>Press <kbd>Super+M</kbd> from anywhere to capture your idea. Universal shortcuts across all major desktop environments.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🔒</div>
+                    <h3>Private & Local</h3>
+                    <p>Everything stored locally as plain text. No cloud, no sync, no accounts. Your ideas stay yours.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🚀</div>
+                    <h3>Lightning Fast</h3>
+                    <p>Opens instantly, saves immediately. Built with Python and native system libraries for maximum speed.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h3>Zero Distraction</h3>
+                    <p>One text field, save button, and idea list. No editing, no search, no complexity. Just capture and go.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🖥️</div>
+                    <h3>Cross-Platform</h3>
+                    <p>Linux (7+ desktop environments), Windows support. Works everywhere you need it.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Download Section -->
+    <section id="download" class="download">
+        <div class="container">
+            <h2 class="section-title">Get Started</h2>
+            <p class="section-subtitle">Download for your platform and start capturing ideas in seconds</p>
+            
+            <div class="download-options">
+                <div class="download-card featured">
+                    <div class="download-header">
+                        <h3>🐧 Linux (.deb)</h3>
+                        <span class="download-badge">Recommended</span>
+                    </div>
+                    <p>Debian, Ubuntu, Linux Mint, MX Linux, Pop!_OS</p>
+                    <div class="download-info">
+                        <span>Version 0.1.4</span>
+                        <span>•</span>
+                        <span>3.1 MB</span>
+                    </div>
+                    <a href="https://github.com/scriptor-pro/memo-tori/releases/download/v0.1.4/memo-tori_0.1.4_amd64.deb" class="btn btn-primary btn-block">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                            <path d="M10 15l-5-5h3V4h4v6h3l-5 5z"/>
+                            <path d="M2 16h16v2H2v-2z"/>
+                        </svg>
+                        Download .deb
+                    </a>
+                    <div class="download-details">
+                        <details>
+                            <summary>Installation instructions</summary>
+                            <pre><code>sudo dpkg -i memo-tori_0.1.4_amd64.deb
+sudo apt-get install -f
+memo-tori</code></pre>
+                        </details>
+                    </div>
+                </div>
+                
+                <div class="download-card">
+                    <div class="download-header">
+                        <h3>📦 From Source</h3>
+                    </div>
+                    <p>All platforms • Full control • Latest development version</p>
+                    <div class="download-info">
+                        <span>Git required</span>
+                    </div>
+                    <a href="https://github.com/scriptor-pro/memo-tori" class="btn btn-secondary btn-block">Clone Repository</a>
+                    <div class="download-details">
+                        <details>
+                            <summary>Setup instructions</summary>
+                            <pre><code>git clone https://github.com/scriptor-pro/memo-tori.git
+cd memo-tori
+python3 -m venv --system-site-packages .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+python3 memo-tori.py</code></pre>
+                        </details>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="download-footer">
+                <p>
+                    <a href="https://github.com/scriptor-pro/memo-tori/releases/tag/v0.1.4">View all release assets</a> •
+                    <a href="https://github.com/scriptor-pro/memo-tori/blob/main/RELEASE_NOTES_0.1.4.md">Release notes</a> •
+                    <a href="https://github.com/scriptor-pro/memo-tori/blob/main/docs/INSTALLATION_GUIDE.md">Full installation guide</a>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Documentation Section -->
+    <section class="documentation">
+        <div class="container">
+            <h2 class="section-title">Documentation</h2>
+            <p class="section-subtitle">Everything you need to know</p>
+            
+            <div class="docs-grid">
+                <a href="https://github.com/scriptor-pro/memo-tori/blob/main/QUICKSTART.md" class="doc-card">
+                    <div class="doc-icon">🚀</div>
+                    <h3>Quick Start</h3>
+                    <p>Get up and running in 2 minutes</p>
+                </a>
+                
+                <a href="https://github.com/scriptor-pro/memo-tori/blob/main/docs/INSTALLATION_GUIDE.md" class="doc-card">
+                    <div class="doc-icon">📦</div>
+                    <h3>Installation Guide</h3>
+                    <p>Complete setup instructions</p>
+                </a>
+                
+                <a href="https://github.com/scriptor-pro/memo-tori/blob/main/docs/KEYBOARD_SHORTCUTS.md" class="doc-card">
+                    <div class="doc-icon">⌨️</div>
+                    <h3>Keyboard Shortcuts</h3>
+                    <p>Set up Super+M on any DE</p>
+                </a>
+                
+                <a href="https://github.com/scriptor-pro/memo-tori/blob/main/docs/LOCALIZATION.md" class="doc-card">
+                    <div class="doc-icon">🌐</div>
+                    <h3>Localization</h3>
+                    <p>Language configuration guide</p>
+                </a>
+                
+                <a href="https://github.com/scriptor-pro/memo-tori/blob/main/docs/QUICK_REFERENCE.md" class="doc-card">
+                    <div class="doc-icon">📋</div>
+                    <h3>Quick Reference</h3>
+                    <p>One-page cheat sheet</p>
+                </a>
+                
+                <a href="https://github.com/scriptor-pro/memo-tori/blob/main/docs/README.md" class="doc-card">
+                    <div class="doc-icon">📚</div>
+                    <h3>Full Documentation</h3>
+                    <p>Complete documentation hub</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Community Section -->
+    <section class="community">
+        <div class="container">
+            <h2 class="section-title">Join the Community</h2>
+            <div class="community-content">
+                <div class="community-item">
+                    <h3>⭐ Star on GitHub</h3>
+                    <p>Show your support and stay updated</p>
+                    <a href="https://github.com/scriptor-pro/memo-tori" class="btn btn-secondary">Star Repository</a>
+                </div>
+                
+                <div class="community-item">
+                    <h3>🐛 Report Issues</h3>
+                    <p>Found a bug? Let us know!</p>
+                    <a href="https://github.com/scriptor-pro/memo-tori/issues" class="btn btn-secondary">Open Issue</a>
+                </div>
+                
+                <div class="community-item">
+                    <h3>💡 Contribute</h3>
+                    <p>Help make Memo Tori better</p>
+                    <a href="https://github.com/scriptor-pro/memo-tori/blob/main/README.md" class="btn btn-secondary">Learn How</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Memo Tori</h4>
+                    <p>Capture ideas instantly. Simple, fast, private.</p>
+                    <p class="footer-version">Version 0.1.4 "Beaufix"</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <ul class="footer-links">
+                        <li><a href="https://github.com/scriptor-pro/memo-tori/blob/main/README.md">About</a></li>
+                        <li><a href="https://github.com/scriptor-pro/memo-tori/blob/main/docs/README.md">Documentation</a></li>
+                        <li><a href="https://github.com/scriptor-pro/memo-tori/releases">Releases</a></li>
+                        <li><a href="https://github.com/scriptor-pro/memo-tori/blob/main/CHANGELOG.md">Changelog</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Support</h4>
+                    <ul class="footer-links">
+                        <li><a href="https://github.com/scriptor-pro/memo-tori/issues">Report Bug</a></li>
+                        <li><a href="https://github.com/scriptor-pro/memo-tori/issues">Request Feature</a></li>
+                        <li><a href="https://github.com/scriptor-pro/memo-tori/blob/main/docs/INSTALLATION_GUIDE.md">Installation Help</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Legal</h4>
+                    <ul class="footer-links">
+                        <li><a href="https://github.com/scriptor-pro/memo-tori/blob/main/LICENSE">MIT License</a></li>
+                        <li><a href="https://github.com/scriptor-pro">GitHub</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Memo Tori Team. Released under MIT License.</p>
+                <p>Made with ❤️ for idea capturers everywhere</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
