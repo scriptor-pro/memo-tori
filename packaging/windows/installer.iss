@@ -2,11 +2,11 @@
 #define MyAppExeName "memo-tori.exe"
 #define MyAppVersion "__VERSION__"
 #define MyAppPublisher "Memo Tori"
-#define MyAppId "memo-tori"
+#define MyAppId "{{A7B8C9D0-1234-5678-9ABC-DEF012345678}"
 #define MySourceDir "__SOURCE_DIR__"
 
 [Setup]
-AppId={{#MyAppId}}
+AppId={#MyAppId}
 AppName={#MyAppName}
 AppVersion={#MyAppVersion}
 AppPublisher={#MyAppPublisher}
