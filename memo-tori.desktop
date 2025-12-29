@@ -1,9 +1,9 @@
 [Desktop Entry]
 Type=Application
-Name=Memo Tori
-Comment=Capture a single idea locally
+Name=Memo Tori (Dev)
+Comment=Capture a single idea locally (development version)
 Exec=/home/Baudouin/Documents/Projets/Memo-Tori/.venv/bin/python3 /home/Baudouin/Documents/Projets/Memo-Tori/memo-tori.py
-Icon=memo-tori
+Icon=/home/Baudouin/Documents/Projets/Memo-Tori/assets/icon.png
 Terminal=false
 Categories=Utility;
 StartupWMClass=Memo Tori

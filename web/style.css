@@ -1,10 +1,10 @@
 :root {
-  --bg: #f5f2ea;
+  --bg: #eee;
   --bg-accent: #e7decf;
   --ink: #1c1a16;
   --muted: #4e463d;
   --edge: #d6c9b5;
-  --accent: #2f4a2f;
+  --accent: #002fa7;
 }
 
 * {
@@ -13,10 +13,11 @@
 
 body {
   margin: 0;
-  font-family: "Helvetica", "Arial", sans serif;
+  font-family: "Source Sans 3", "Source Sans Pro", "Noto Sans", "DejaVu Sans",
+    "Liberation Sans", sans-serif;
   color: var(--ink);
-  background: radial-gradient(circle at top left, #f7efe2, var(--bg));
-  min-height: 100vh;
+  background:  var(--bg);
+  min-height: 33vh;
 }
 
 .app {
@@ -80,7 +81,7 @@ textarea:focus {
 button {
   margin-top: 16px;
   padding: 12px 18px;
-  border-radius: 999px;
+  border-radius: 99px;
   border: none;
   background: var(--accent);
   color: #fff;
