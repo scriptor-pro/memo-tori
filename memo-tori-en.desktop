@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=Memo Tori (English)
+Comment=Capture a single idea locally (English interface)
+Exec=/home/Baudouin/Documents/Projets/Memo-Tori/memo-tori-en.sh
+Icon=/home/Baudouin/Documents/Projets/Memo-Tori/assets/icon.png
+Terminal=false
+Categories=Utility;
+StartupWMClass=Memo Tori

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr-BE">
+<html lang="en" id="html-root">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -14,24 +14,22 @@
       </header>
 
       <section class="panel" id="form-view">
-        <!--
-        <label class="label" for="idea">Entrez votre idée</label>-->
-        <textarea id="idea" maxlength="5000" rows="10" placeholder="Ton idée :"></textarea>
+        <textarea id="idea" maxlength="5000" rows="10" data-i18n-placeholder="textarea_placeholder"></textarea>
         <div class="meta">
-          <span id="counter">0 / 5000</span>
+          <span id="counter" data-i18n-counter>0 / 5000</span>
         </div>
-        <button id="submit">Sauvegarder cette idée</button>
-        <button class="secondary" id="show-list">Liste des idées</button>
+        <button id="submit" data-i18n-text="submit_button">Save this idea</button>
+        <button class="secondary" id="show-list" data-i18n-text="show_list_button">Ideas list</button>
         <p class="error" id="form-error" aria-live="polite"></p>
       </section>
 
       <section class="panel hidden" id="list-view">
         <div class="list-header">
-          <h2>Idées</h2>
-          <button class="secondary" id="show-form">J'ai une nouvelle idée</button>
+          <h2 data-i18n-text="list_title">Ideas</h2>
+          <button class="secondary" id="show-form" data-i18n-text="new_idea_button">I have a new idea</button>
         </div>
         <div id="ideas"></div>
-        <p class="empty" id="empty-state">Aucune idée pour le moment.</p>
+        <p class="empty" id="empty-state" data-i18n-text="empty_state">No ideas yet.</p>
       </section>
     </main>
 

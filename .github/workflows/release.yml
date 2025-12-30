@@ -1,0 +1,122 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'  # Trigger on version tags like v0.1.4
+
+jobs:
+  build-and-release:
+    runs-on: ubuntu-22.04
+    
+    permissions:
+      contents: write  # Required for creating releases
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            python3-venv \
+            python3-pip \
+            python3-gi \
+            gir1.2-gtk-3.0 \
+            gir1.2-webkit2-4.0 \
+            dpkg-dev \
+            fakeroot
+      
+      - name: Get version from tag
+        id: get_version
+        run: |
+          VERSION=${GITHUB_REF#refs/tags/v}
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+          echo "Building version: $VERSION"
+      
+      - name: Verify VERSION file matches tag
+        run: |
+          FILE_VERSION=$(cat VERSION | tr -d '[:space:]')
+          TAG_VERSION="${{ steps.get_version.outputs.version }}"
+          if [ "$FILE_VERSION" != "$TAG_VERSION" ]; then
+            echo "Error: VERSION file ($FILE_VERSION) does not match tag ($TAG_VERSION)"
+            exit 1
+          fi
+          echo "Version verified: $FILE_VERSION"
+      
+      - name: Build .deb package
+        run: |
+          bash scripts/build-deb.sh
+      
+      - name: Verify package was built
+        run: |
+          VERSION="${{ steps.get_version.outputs.version }}"
+          DEB_FILE="dist/memo-tori_${VERSION}_amd64.deb"
+          if [ ! -f "$DEB_FILE" ]; then
+            echo "Error: Package not found: $DEB_FILE"
+            exit 1
+          fi
+          ls -lh "$DEB_FILE"
+      
+      - name: Generate checksums
+        run: |
+          VERSION="${{ steps.get_version.outputs.version }}"
+          cd dist
+          sha256sum "memo-tori_${VERSION}_amd64.deb" > "checksums_${VERSION}.txt"
+          md5sum "memo-tori_${VERSION}_amd64.deb" >> "checksums_${VERSION}.txt"
+          cat "checksums_${VERSION}.txt"
+      
+      - name: Extract release notes
+        id: release_notes
+        run: |
+          VERSION="${{ steps.get_version.outputs.version }}"
+          RELEASE_NOTES_FILE="RELEASE_NOTES_${VERSION}.md"
+          
+          if [ -f "$RELEASE_NOTES_FILE" ]; then
+            echo "Using release notes from: $RELEASE_NOTES_FILE"
+            # Extract content after the first heading for the release body
+            NOTES=$(tail -n +3 "$RELEASE_NOTES_FILE")
+            echo "$NOTES" > release_notes_body.md
+          else
+            echo "Release notes not found, using CHANGELOG"
+            # Extract relevant section from CHANGELOG
+            VERSION_PATTERN="## \[${VERSION}\]"
+            awk "/$VERSION_PATTERN/,/^## \[/" CHANGELOG.md | head -n -1 > release_notes_body.md
+          fi
+          
+          # Get release title
+          if [ -f "$RELEASE_NOTES_FILE" ]; then
+            TITLE=$(grep -m 1 "^# " "$RELEASE_NOTES_FILE" | sed 's/^# //')
+          else
+            TITLE="Memo Tori v${VERSION}"
+          fi
+          
+          echo "title=$TITLE" >> $GITHUB_OUTPUT
+      
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v1
+        with:
+          name: ${{ steps.release_notes.outputs.title }}
+          body_path: release_notes_body.md
+          files: |
+            dist/memo-tori_${{ steps.get_version.outputs.version }}_amd64.deb
+            dist/checksums_${{ steps.get_version.outputs.version }}.txt
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: memo-tori-${{ steps.get_version.outputs.version }}
+          path: |
+            dist/memo-tori_${{ steps.get_version.outputs.version }}_amd64.deb
+            dist/checksums_${{ steps.get_version.outputs.version }}.txt
+          retention-days: 90

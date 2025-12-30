@@ -4,8 +4,21 @@ from pathlib import Path
 
 import webview
 
+from i18n import detect_language, get_translations
+
 BASE_DIR = Path(__file__).resolve().parent
 APP_ID = "memo-tori"
+
+# Read version from VERSION file
+VERSION_FILE = BASE_DIR / "VERSION"
+try:
+    VERSION = VERSION_FILE.read_text(encoding="utf-8").strip()
+except (FileNotFoundError, IOError):
+    VERSION = "0.0.0"
+
+# Detect language at startup
+LANGUAGE = detect_language()
+TRANSLATIONS = get_translations(LANGUAGE)
 
 
 def _resolve_data_dir():
@@ -76,10 +89,15 @@ class Api:
         ideas.pop(original_index)
         _save_ideas(ideas)
         return {"ok": True}
+    
+    def get_translations(self):
+        """Return translations for the frontend."""
+        return TRANSLATIONS
 
 
 if __name__ == "__main__":
     DATA_DIR.mkdir(parents=True, exist_ok=True)
     html_path = (BASE_DIR / "web" / "index.html").as_uri()
-    webview.create_window("Memo Tori", html_path, js_api=Api(), width=700, height=800)
+    window_title = f"{TRANSLATIONS.get('window_title', 'Memo Tori')} {VERSION}"
+    webview.create_window(window_title, html_path, js_api=Api(), width=700, height=800)
     webview.start()

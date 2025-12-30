@@ -21,6 +21,8 @@ mkdir -p \
   "$STAGE_DIR/usr/share/icons/hicolor/512x512/apps"
 
 cp -a "$ROOT_DIR/memo-tori.py" "$STAGE_DIR/opt/memo-tori/"
+cp -a "$ROOT_DIR/i18n.py" "$STAGE_DIR/opt/memo-tori/"
+cp -a "$ROOT_DIR/VERSION" "$STAGE_DIR/opt/memo-tori/"
 cp -a "$ROOT_DIR/web" "$STAGE_DIR/opt/memo-tori/"
 cp -a "$ROOT_DIR/assets" "$STAGE_DIR/opt/memo-tori/"
 cp -a "$ROOT_DIR/requirements.txt" "$STAGE_DIR/opt/memo-tori/"

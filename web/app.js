@@ -12,9 +12,42 @@ const ideasContainer = document.getElementById("ideas");
 const emptyState = document.getElementById("empty-state");
 const formError = document.getElementById("form-error");
 
+// Translations will be loaded from the backend
+let translations = {};
+
+function applyTranslations() {
+  // Update HTML lang attribute
+  const htmlRoot = document.getElementById("html-root");
+  if (htmlRoot && translations.html_lang) {
+    htmlRoot.setAttribute("lang", translations.html_lang);
+  }
+
+  // Update elements with data-i18n-text attribute
+  document.querySelectorAll("[data-i18n-text]").forEach((el) => {
+    const key = el.getAttribute("data-i18n-text");
+    if (translations[key]) {
+      el.textContent = translations[key];
+    }
+  });
+
+  // Update textarea placeholder
+  document.querySelectorAll("[data-i18n-placeholder]").forEach((el) => {
+    const key = el.getAttribute("data-i18n-placeholder");
+    if (translations[key]) {
+      el.setAttribute("placeholder", translations[key]);
+    }
+  });
+
+  // Update counter with current count
+  updateCounter();
+}
+
 function updateCounter() {
   const length = textarea.value.length;
-  counter.textContent = `${length} / ${MAX_CHARS}`;
+  const counterFormat = translations.counter_format || "{count} / {max}";
+  counter.textContent = counterFormat
+    .replace("{count}", length)
+    .replace("{max}", MAX_CHARS);
   submitBtn.disabled = length === 0 || length > MAX_CHARS;
 }
 
@@ -59,7 +92,8 @@ function renderIdeas(ideas) {
       if (!checkbox.checked) {
         return;
       }
-      const ok = window.confirm("Effacer cette idée ?");
+      const confirmMessage = translations.delete_confirm || "Delete this idea?";
+      const ok = window.confirm(confirmMessage);
       if (!ok) {
         checkbox.checked = false;
         return;
@@ -72,7 +106,7 @@ function renderIdeas(ideas) {
       }
     });
     const span = document.createElement("span");
-    span.textContent = "effacer";
+    span.textContent = translations.delete_label || "delete";
 
     label.appendChild(checkbox);
     label.appendChild(span);
@@ -93,7 +127,7 @@ async function submitIdea() {
   const text = textarea.value;
   const result = await window.pywebview.api.save_idea(text);
   if (!result.ok) {
-    formError.textContent = "Impossible d'enregistrer cette idée.";
+    formError.textContent = translations.form_error || "Unable to save this idea.";
     return;
   }
   textarea.value = "";
@@ -108,7 +142,30 @@ showListBtn.addEventListener("click", async () => {
 });
 showFormBtn.addEventListener("click", showForm);
 
-window.addEventListener("pywebviewready", () => {
+window.addEventListener("pywebviewready", async () => {
+  // Load translations from backend
+  try {
+    translations = await window.pywebview.api.get_translations();
+    applyTranslations();
+  } catch (error) {
+    console.error("Failed to load translations:", error);
+    // Use default English translations as fallback
+    translations = {
+      textarea_placeholder: "Your idea:",
+      counter_format: "{count} / {max}",
+      submit_button: "Save this idea",
+      show_list_button: "Ideas list",
+      form_error: "Unable to save this idea.",
+      list_title: "Ideas",
+      new_idea_button: "I have a new idea",
+      empty_state: "No ideas yet.",
+      delete_label: "delete",
+      delete_confirm: "Delete this idea?",
+      html_lang: "en",
+    };
+    applyTranslations();
+  }
+  
   updateCounter();
   showForm();
 });
