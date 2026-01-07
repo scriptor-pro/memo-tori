@@ -1,0 +1,20 @@
+#!/bin/bash
+# AppImage entry point for Memo Tori
+
+# Get the directory where this AppImage is mounted
+APPDIR="$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")"
+
+# Set up environment
+export PATH="$APPDIR/usr/bin:$PATH"
+export PYTHONPATH="$APPDIR/usr/lib/memo-tori:$APPDIR/usr/lib/memo-tori/lib:$PYTHONPATH"
+
+# Check if Python 3 is available
+if ! command -v python3 &> /dev/null; then
+    echo "Error: Python 3 is required but not found"
+    echo "Please install Python 3 to use Memo Tori"
+    exit 1
+fi
+
+# Run the application
+cd "$APPDIR/usr/lib/memo-tori"
+exec python3 memo-tori.py "$@"

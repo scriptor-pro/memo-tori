@@ -25,6 +25,8 @@ def _resolve_data_dir():
     env_dir = os.environ.get("MEMO_TORI_DATA_DIR")
     if env_dir:
         return Path(env_dir).expanduser()
+    if sys.platform == "darwin":
+        return Path.home() / "Library" / "Application Support" / APP_ID
     if sys.platform.startswith("win"):
         appdata = os.environ.get("APPDATA")
         if appdata:

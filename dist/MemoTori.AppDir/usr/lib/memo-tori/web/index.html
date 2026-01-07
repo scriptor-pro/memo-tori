@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" id="html-root">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Memo Tori</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="app">
+      <header class="brand">
+        <h1>Memo Tori</h1>
+
+      </header>
+
+      <section class="panel" id="form-view">
+        <textarea id="idea" maxlength="5000" rows="10" data-i18n-placeholder="textarea_placeholder"></textarea>
+        <div class="meta">
+          <span id="counter" data-i18n-counter>0 / 5000</span>
+        </div>
+        <button id="submit" data-i18n-text="submit_button">Save this idea</button>
+        <button class="secondary" id="show-list" data-i18n-text="show_list_button">Ideas list</button>
+        <p class="error" id="form-error" aria-live="polite"></p>
+      </section>
+
+      <section class="panel hidden" id="list-view">
+        <div class="list-header">
+          <h2 data-i18n-text="list_title">Ideas</h2>
+          <button class="secondary" id="show-form" data-i18n-text="new_idea_button">I have a new idea</button>
+        </div>
+        <div id="ideas"></div>
+        <p class="empty" id="empty-state" data-i18n-text="empty_state">No ideas yet.</p>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>

@@ -93,6 +93,24 @@ memo-tori
 
 See the [Windows installer section](../README.md#windows-installer) in the main README.
 
+### Method 4: macOS .app
+
+**Prerequisites on macOS:**
+
+- Python 3.10+ installed (`python3`)
+- Xcode Command Line Tools (for `iconutil` and `sips`)
+
+**Build the .app:**
+```bash
+cd /path/to/memo-tori
+bash scripts/build-macos-app.sh
+```
+
+**Output:**
+```
+dist/Memo Tori.app
+```
+
 ---
 
 ## 🖥️ Desktop Integration
@@ -183,6 +201,11 @@ Memo Tori stores your ideas in plain text format:
 **Linux:**
 ```
 ~/.local/share/memo-tori/ideas.txt
+```
+
+**macOS:**
+```
+~/Library/Application Support/memo-tori/ideas.txt
 ```
 
 **Windows:**

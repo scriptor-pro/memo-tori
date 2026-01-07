@@ -129,6 +129,26 @@ Output:
 dist\memo-tori-0.1.0-setup.exe
 ```
 
+## macOS (.app)
+
+Prerequisites on macOS:
+
+- Python 3.10+ installed (python3)
+- Xcode Command Line Tools (for `iconutil` and `sips`)
+
+Build the .app from Terminal:
+
+```bash
+cd /path/to/memo-tori
+bash scripts/build-macos-app.sh
+```
+
+Output:
+
+```
+dist/Memo Tori.app
+```
+
 ## Versioning
 
 The version is stored in the `VERSION` file at the project root. Set the `VERSION` environment variable to override it for a single build.
@@ -151,7 +171,7 @@ If your system `python3` is not Debian's 3.11, use it explicitly:
 ## Run
 
 ```bash
-cd /home/Baudouin/Documents/Projets/Memo-Tori
+cd /path/to/memo-tori
 . .venv/bin/activate
 python3 memo-tori.py
 ```
@@ -169,7 +189,7 @@ To add Memo Tori to your app launcher:
 
 ```bash
 mkdir -p ~/.local/share/applications
-cp /home/Baudouin/Documents/Projets/Memo-Tori/memo-tori.desktop ~/.local/share/applications/
+cp memo-tori.desktop ~/.local/share/applications/
 ```
 
 ## Keyboard shortcut (Linux)
@@ -208,6 +228,7 @@ If the automatic setup doesn't work, see the [manual configuration section](docs
 Ideas are stored in:
 
 - Linux: `~/.local/share/memo-tori/ideas.txt` (or `$XDG_DATA_HOME/memo-tori/ideas.txt`)
+- macOS: `~/Library/Application Support/memo-tori/ideas.txt`
 - Windows: `%APPDATA%\\memo-tori\\ideas.txt`
 
 using plain text blocks separated by a line containing:

@@ -207,7 +207,7 @@ gtk-launch memo-tori
 
 **Running from source**:
 ```bash
-/home/Baudouin/Documents/Projets/Memo-Tori/.venv/bin/python3 /home/Baudouin/Documents/Projets/Memo-Tori/memo-tori.py
+/path/to/memo-tori/.venv/bin/python3 /path/to/memo-tori/memo-tori.py
 ```
 
 Replace the path with your actual installation directory.

@@ -1,0 +1,13 @@
+#!/bin/bash
+# Memo Tori AppImage launcher
+
+# Get the directory where this script is located
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+APP_DIR="$(dirname "$SCRIPT_DIR")/lib/memo-tori"
+
+# Set PYTHONPATH to include our app directory and bundled libs
+export PYTHONPATH="$APP_DIR:$APP_DIR/lib:$PYTHONPATH"
+
+# Change to app directory and run
+cd "$APP_DIR"
+exec python3 memo-tori.py "$@"

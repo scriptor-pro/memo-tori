@@ -8,15 +8,25 @@ __pycache__/
 # Virtual environments
 .venv/
 .venv-win/
+.venv-test/
 venv/
 ENV/
 env/
 
 # Build artifacts
-dist/
 build/
-*.deb
 *.egg-info/
+
+# Distribution artifacts (keep latest only, ignore old builds)
+dist/*.deb
+dist/memo-tori_*/
+dist/checksums_*.txt
+
+# Test artifacts
+.pytest_cache/
+htmlcov/
+.coverage
+coverage.xml
 
 # IDE
 .vscode/
@@ -31,6 +41,7 @@ Thumbs.db
 
 # Design/preview files
 web/font-preview.html
+provisoire-images/
 
 # Local data (development)
 data/ideas.txt

@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=Memo Tori
+Comment=Capture a single idea locally
+Exec=memo-tori
+Icon=memo-tori
+Terminal=false
+Categories=Utility;Office;
+StartupWMClass=Memo Tori

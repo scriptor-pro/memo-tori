@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="fr-BE">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Memo Tori - Apercu Typo</title>
+    <style>
+      :root {
+        --bg: #f5ffea;
+        --bg-accent: #e7decf;
+        --ink: #1c1a16;
+        --muted: #4e463d;
+        --edge: #d6c9b5;
+        --accent: #002fa7;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: "Noto Sans", "DejaVu Sans", "Liberation Sans", sans-serif;
+        color: var(--ink);
+        background: var(--bg);
+      }
+
+      main {
+        max-width: 980px;
+        margin: 0 auto;
+        padding: 32px 20px 56px;
+        display: grid;
+        gap: 18px;
+      }
+
+      header h1 {
+        margin: 0 0 4px;
+        font-size: 1.8rem;
+        letter-spacing: 0.01em;
+      }
+
+      header p {
+        margin: 0;
+        color: var(--muted);
+      }
+
+      .grid {
+        display: grid;
+        gap: 18px;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      }
+
+      .card {
+        background: #fffdf9;
+        border: 1px solid var(--edge);
+        border-radius: 16px;
+        padding: 18px;
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+        display: grid;
+        gap: 10px;
+      }
+
+      .tag {
+        font-size: 0.82rem;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+
+      h2 {
+        margin: 0;
+        font-size: 1.3rem;
+      }
+
+      p {
+        margin: 0;
+        line-height: 1.55;
+      }
+
+      .sample-ui {
+        border: 1px solid var(--edge);
+        border-radius: 12px;
+        padding: 12px;
+        background: #fff;
+        display: grid;
+        gap: 10px;
+      }
+
+      .sample-ui textarea {
+        width: 100%;
+        min-height: 90px;
+        padding: 10px 12px;
+        border-radius: 10px;
+        border: 1px solid var(--edge);
+        resize: vertical;
+        font: inherit;
+      }
+
+      .sample-ui button {
+        padding: 10px 14px;
+        border-radius: 999px;
+        border: none;
+        background: var(--accent);
+        color: #fff;
+        font: inherit;
+        cursor: pointer;
+      }
+
+      .meta {
+        color: var(--muted);
+        font-size: 0.9rem;
+      }
+
+      .humanist {
+        font-family: "Source Sans 3", "Source Sans Pro", "Noto Sans", sans-serif;
+      }
+
+      .editorial h2 {
+        font-family: "Alegreya", "Georgia", "Times New Roman", serif;
+      }
+
+      .editorial,
+      .editorial p,
+      .editorial textarea,
+      .editorial button {
+        font-family: "Alegreya Sans", "Noto Sans", sans-serif;
+      }
+
+      .crisp {
+        font-family: "IBM Plex Sans", "Noto Sans", sans-serif;
+      }
+
+      .system-first {
+        font-family: "Noto Sans", "DejaVu Sans", "Liberation Sans", sans-serif;
+      }
+
+      @media (max-width: 600px) {
+        main {
+          padding: 24px 16px 40px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <header>
+        <h1>Apercu Typo Memo Tori</h1>
+        <p>Chaque carte simule un mini panneau de l'app.</p>
+      </header>
+
+      <section class="grid">
+        <article class="card humanist">
+          <div class="tag">Humanist</div>
+          <h2>Source Sans 3</h2>
+          <p>Note rapide, idee claire, ton chaleureux pour capturer l'essentiel.</p>
+          <div class="sample-ui">
+            <textarea>Ton idee : ecrire plus souvent, meme 5 minutes.</textarea>
+            <div class="meta">72 / 5000</div>
+            <button>Sauvegarder cette idee</button>
+          </div>
+        </article>
+
+        <article class="card editorial">
+          <div class="tag">Editorial</div>
+          <h2>Alegreya Sans + Alegreya</h2>
+          <p>Un souffle carnet, plus litteraire, sans perdre la lisibilite.</p>
+          <div class="sample-ui">
+            <textarea>Une image, une impression, un fil a garder.</textarea>
+            <div class="meta">58 / 5000</div>
+            <button>Sauvegarder cette idee</button>
+          </div>
+        </article>
+
+        <article class="card crisp">
+          <div class="tag">Crisp</div>
+          <h2>IBM Plex Sans</h2>
+          <p>Precise, nette, un peu technique, bonne tenue dans l'UI.</p>
+          <div class="sample-ui">
+            <textarea>Plan simple: ouvrir, ecrire, fermer. Rien de plus.</textarea>
+            <div class="meta">64 / 5000</div>
+            <button>Sauvegarder cette idee</button>
+          </div>
+        </article>
+
+        <article class="card system-first">
+          <div class="tag">System-first</div>
+          <h2>Noto Sans</h2>
+          <p>Le choix robuste, coherent entre Linux et Windows.</p>
+          <div class="sample-ui">
+            <textarea>Garder l'idee, sans bruit, sans detours.</textarea>
+            <div class="meta">50 / 5000</div>
+            <button>Sauvegarder cette idee</button>
+          </div>
+        </article>
+      </section>
+    </main>
+  </body>
+</html>
