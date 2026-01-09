@@ -1,0 +1,36 @@
+pkgname=memo-tori
+pkgver=${PKGVER:-0.1.0}
+pkgrel=1
+pkgdesc="Tiny desktop app to capture a single idea"
+arch=('x86_64')
+license=('MIT')
+depends=('python' 'python-gobject' 'gtk3' 'webkit2gtk')
+makedepends=('python-pip')
+source=("${pkgname}-${pkgver}.tar.gz")
+sha256sums=('SKIP')
+
+package() {
+  local app_dir="$pkgdir/opt/memo-tori"
+  local src_root="$srcdir/${pkgname}-${pkgver}"
+
+  install -d "$app_dir"
+  cp -a "$src_root/memo-tori.py" "$app_dir/"
+  cp -a "$src_root/i18n.py" "$app_dir/"
+  cp -a "$src_root/VERSION" "$app_dir/"
+  cp -a "$src_root/web" "$app_dir/"
+  cp -a "$src_root/assets" "$app_dir/"
+  cp -a "$src_root/requirements.txt" "$app_dir/"
+
+  python -m venv --system-site-packages "$app_dir/.venv"
+  "$app_dir/.venv/bin/pip" install --no-cache-dir -r "$app_dir/requirements.txt"
+
+  install -Dm644 "$src_root/packaging/deb/memo-tori.desktop" \
+    "$pkgdir/usr/share/applications/memo-tori.desktop"
+  install -Dm644 "$src_root/assets/icon.png" \
+    "$pkgdir/usr/share/icons/hicolor/512x512/apps/memo-tori.png"
+
+  install -Dm755 /dev/stdin "$pkgdir/usr/bin/memo-tori" << 'EOF'
+#!/usr/bin/env bash
+exec /opt/memo-tori/.venv/bin/python3 /opt/memo-tori/memo-tori.py "$@"
+EOF
+}

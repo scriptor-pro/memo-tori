@@ -8,7 +8,7 @@ Welcome to the Memo Tori documentation! This directory contains guides and refer
 
 - **[Installation Guide](INSTALLATION_GUIDE.md)** - Complete installation and setup guide. Covers:
   - System requirements and prerequisites
-  - Installation methods (source, .deb, Windows)
+  - Installation methods (source, .deb, Arch PKGBUILD, Windows)
   - Desktop integration setup
   - Post-installation verification
   - Updating and uninstallation

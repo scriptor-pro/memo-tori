@@ -89,11 +89,30 @@ sudo apt-get install -f  # Fix any missing dependencies
 memo-tori
 ```
 
-### Method 3: Windows Installation
+### Method 3: Arch Linux (PKGBUILD)
+
+**Step 1: Build the package**
+```bash
+cd /path/to/memo-tori
+bash scripts/build-arch.sh
+```
+Note: the build step installs `pywebview` into the package using pip.
+
+**Step 2: Install the package**
+```bash
+sudo pacman -U dist/arch/memo-tori-*-x86_64.pkg.tar.zst
+```
+
+**Step 3: Test the installation**
+```bash
+memo-tori
+```
+
+### Method 4: Windows Installation
 
 See the [Windows installer section](../README.md#windows-installer) in the main README.
 
-### Method 4: macOS .app
+### Method 5: macOS .app
 
 **Prerequisites on macOS:**
 

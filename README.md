@@ -11,6 +11,7 @@ Memo Tori is a tiny desktop app to capture a single idea and store it locally as
 **Latest Release:** v0.1.4 "Beaufix" (December 29, 2025)
 
 - **[memo-tori_0.1.4_amd64.deb](dist/memo-tori_0.1.4_amd64.deb)** - Debian/Ubuntu package (3.1 MB)
+- **Arch Linux (PKGBUILD)** - build with `bash scripts/build-arch.sh`, then install with `sudo pacman -U dist/arch/memo-tori-<version>-1-x86_64.pkg.tar.zst`
 - **[Release Notes](RELEASE_NOTES_0.1.4.md)** - What's new in v0.1.4
 - **[Quick Start Guide](QUICKSTART.md)** - Get started in 2 minutes
 
