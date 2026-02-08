@@ -25,13 +25,14 @@ The fastest way to create a release using GitHub Actions:
 bash scripts/prepare-release.sh
 
 # 2. Commit changes
-git add VERSION CHANGELOG.md RELEASE_NOTES_*.md
-git commit -m "Release v0.1.4"
+VERSION=$(cat VERSION)
+git add VERSION CHANGELOG.md RELEASE_NOTES_${VERSION}.md
+git commit -m "Release v${VERSION}"
 
 # 3. Create and push tag
-git tag -a v0.1.4 -m "Release 0.1.4"
+git tag -a "v${VERSION}" -m "Release ${VERSION}"
 git push origin main
-git push origin v0.1.4
+git push origin "v${VERSION}"
 ```
 
 GitHub Actions will automatically:
@@ -77,7 +78,7 @@ Ensure all documentation is current:
 git add VERSION CHANGELOG.md RELEASE_NOTES_*.md README.md
 
 # Commit with descriptive message
-git commit -m "Release v0.1.4"
+git commit -m "Release v${VERSION}"
 
 # Push to main branch
 git push origin main
@@ -87,10 +88,10 @@ git push origin main
 
 ```bash
 # Create annotated tag
-git tag -a v0.1.4 -m "Release 0.1.4"
+git tag -a "v${VERSION}" -m "Release ${VERSION}"
 
 # Push tag to trigger automated release
-git push origin v0.1.4
+git push origin "v${VERSION}"
 ```
 
 ### Step 5: Verify Release
@@ -108,7 +109,7 @@ Once GitHub Actions completes (or after manual release):
 
 ### How It Works
 
-When you push a version tag (e.g., `v0.1.4`), GitHub Actions automatically:
+When you push a version tag (e.g., `v0.1.7`), GitHub Actions automatically:
 
 1. **Checks out code** from the tag
 2. **Sets up Python** and installs dependencies
@@ -131,10 +132,10 @@ When you push a version tag (e.g., `v0.1.4`), GitHub Actions automatically:
 
 ```bash
 # Create tag
-git tag -a v0.1.4 -m "Release 0.1.4"
+git tag -a "v${VERSION}" -m "Release ${VERSION}"
 
 # Push tag (this triggers the workflow)
-git push origin v0.1.4
+git push origin "v${VERSION}"
 ```
 
 ### Monitoring Progress
@@ -178,8 +179,8 @@ bash scripts/create-github-release.sh
 
 This script will:
 1. Verify VERSION file exists
-2. Verify .deb package exists
-3. Verify release notes exist
+2. Verify required assets exist (.deb)
+3. Detect optional assets if present (AppImage, Arch package, RPM)
 4. Generate checksums
 5. Create git tag
 6. Push tag to remote
@@ -217,19 +218,19 @@ If you prefer using GitHub's web interface:
 
 ### Step 2: Create Tag
 
-- **Tag version:** `v0.1.4`
+- **Tag version:** `v0.1.7`
 - **Target:** `main` (or appropriate branch)
 
 ### Step 3: Add Title and Description
 
-- **Release title:** `Memo Tori v0.1.4 "Beaufix"`
-- **Description:** Copy content from `RELEASE_NOTES_0.1.4.md`
+- **Release title:** `Memo Tori v0.1.7`
+- **Description:** Copy content from `RELEASE_NOTES_0.1.7.md`
 
 ### Step 4: Upload Assets
 
 Drag and drop or browse to upload:
-- `dist/memo-tori_0.1.4_amd64.deb`
-- `dist/checksums_0.1.4.txt`
+- `dist/memo-tori_0.1.7_amd64.deb`
+- `dist/checksums_0.1.7.txt`
 
 ### Step 5: Publish
 
@@ -305,12 +306,12 @@ Use this checklist for each release:
 
 **If local:**
 ```bash
-git tag -d v0.1.4  # Delete local tag
+git tag -d v0.1.7  # Delete local tag
 ```
 
 **If remote:**
 ```bash
-git push --delete origin v0.1.4  # Delete remote tag
+git push --delete origin v0.1.7  # Delete remote tag
 ```
 
 Then recreate and push again.
@@ -322,7 +323,7 @@ Then recreate and push again.
 2. Falls back to CHANGELOG.md section
 
 **Solution:**
-Create `RELEASE_NOTES_0.1.4.md` with proper formatting.
+Create `RELEASE_NOTES_${VERSION}.md` with proper formatting.
 
 ### Problem: .deb package not found
 
@@ -370,7 +371,7 @@ chmod +x scripts/build-deb.sh
 ### Semantic Versioning
 
 Follow [SemVer](https://semver.org/):
-- **MAJOR.MINOR.PATCH** (e.g., 0.1.4)
+- **MAJOR.MINOR.PATCH** (e.g., 0.1.7)
 - **MAJOR:** Breaking changes
 - **MINOR:** New features (backward compatible)
 - **PATCH:** Bug fixes (backward compatible)
@@ -440,29 +441,29 @@ Good release notes include:
 
 ## Example: Complete Release Process
 
-Here's a complete example of releasing v0.1.5:
+Here's a complete example of releasing v0.1.7:
 
 ```bash
 # 1. Update version
-echo "0.1.5" > VERSION
+echo "0.1.7" > VERSION
 
 # 2. Update CHANGELOG.md
 # (edit manually)
 
 # 3. Create release notes
-# (create RELEASE_NOTES_0.1.5.md)
+# (create RELEASE_NOTES_0.1.7.md)
 
 # 4. Prepare release
 bash scripts/prepare-release.sh
 
 # 5. Commit
-git add VERSION CHANGELOG.md RELEASE_NOTES_0.1.5.md
-git commit -m "Release v0.1.5"
+git add VERSION CHANGELOG.md RELEASE_NOTES_0.1.7.md
+git commit -m "Release v0.1.7"
 git push origin main
 
 # 6. Tag and push (triggers GitHub Actions)
-git tag -a v0.1.5 -m "Release 0.1.5"
-git push origin v0.1.5
+git tag -a v0.1.7 -m "Release 0.1.7"
+git push origin v0.1.7
 
 # 7. Wait for GitHub Actions to complete
 # 8. Verify release at: https://github.com/YOUR_USERNAME/memo-tori/releases
@@ -470,4 +471,4 @@ git push origin v0.1.5
 
 ---
 
-**Last updated:** 2025-12-29
+**Last updated:** 2026-02-08

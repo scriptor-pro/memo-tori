@@ -3,7 +3,7 @@ name: Release
 on:
   push:
     tags:
-      - 'v*'  # Trigger on version tags like v0.1.4
+      - 'v*'  # Trigger on version tags like v0.1.7
 
 jobs:
   build-and-release:
@@ -31,7 +31,9 @@ jobs:
             gir1.2-gtk-3.0 \
             gir1.2-webkit2-4.0 \
             dpkg-dev \
-            fakeroot
+            fakeroot \
+            wget \
+            libfuse2
       
       - name: Get version from tag
         id: get_version
@@ -53,6 +55,10 @@ jobs:
       - name: Build .deb package
         run: |
           bash scripts/build-deb.sh
+
+      - name: Build AppImage
+        run: |
+          bash scripts/build-appimage.sh
       
       - name: Verify package was built
         run: |
@@ -63,13 +69,25 @@ jobs:
             exit 1
           fi
           ls -lh "$DEB_FILE"
+
+      - name: Verify AppImage was built
+        run: |
+          VERSION="${{ steps.get_version.outputs.version }}"
+          APPIMAGE_FILE="dist/memo-tori-${VERSION}-x86_64.AppImage"
+          if [ ! -f "$APPIMAGE_FILE" ]; then
+            echo "Error: AppImage not found: $APPIMAGE_FILE"
+            exit 1
+          fi
+          ls -lh "$APPIMAGE_FILE"
       
       - name: Generate checksums
         run: |
           VERSION="${{ steps.get_version.outputs.version }}"
+          DEB_FILE="memo-tori_${VERSION}_amd64.deb"
+          APPIMAGE_FILE="memo-tori-${VERSION}-x86_64.AppImage"
           cd dist
-          sha256sum "memo-tori_${VERSION}_amd64.deb" > "checksums_${VERSION}.txt"
-          md5sum "memo-tori_${VERSION}_amd64.deb" >> "checksums_${VERSION}.txt"
+          sha256sum "$DEB_FILE" "$APPIMAGE_FILE" > "checksums_${VERSION}.txt"
+          md5sum "$DEB_FILE" "$APPIMAGE_FILE" >> "checksums_${VERSION}.txt"
           cat "checksums_${VERSION}.txt"
       
       - name: Extract release notes
@@ -106,6 +124,7 @@ jobs:
           body_path: release_notes_body.md
           files: |
             dist/memo-tori_${{ steps.get_version.outputs.version }}_amd64.deb
+            dist/memo-tori-${{ steps.get_version.outputs.version }}-x86_64.AppImage
             dist/checksums_${{ steps.get_version.outputs.version }}.txt
           draft: false
           prerelease: false
@@ -118,5 +137,6 @@ jobs:
           name: memo-tori-${{ steps.get_version.outputs.version }}
           path: |
             dist/memo-tori_${{ steps.get_version.outputs.version }}_amd64.deb
+            dist/memo-tori-${{ steps.get_version.outputs.version }}-x86_64.AppImage
             dist/checksums_${{ steps.get_version.outputs.version }}.txt
           retention-days: 90

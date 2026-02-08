@@ -1,6 +1,6 @@
 # Memo Tori
 
-**Version:** 0.1.4 "Beaufix" | **Released:** December 29, 2025
+**Version:** see `VERSION` | **Releases:** see GitHub Releases
 
 Memo Tori is a tiny desktop app to capture a single idea and store it locally as plain text.
 
@@ -8,12 +8,30 @@ Memo Tori is a tiny desktop app to capture a single idea and store it locally as
 
 ## 📥 Download
 
-**Latest Release:** v0.1.4 "Beaufix" (December 29, 2025)
+Download installers/packages from GitHub Releases:
 
-- **[memo-tori_0.1.4_amd64.deb](dist/memo-tori_0.1.4_amd64.deb)** - Debian/Ubuntu package (3.1 MB)
-- **Arch Linux (PKGBUILD)** - build with `bash scripts/build-arch.sh`, then install with `sudo pacman -U dist/arch/memo-tori-<version>-1-x86_64.pkg.tar.zst`
-- **[Release Notes](RELEASE_NOTES_0.1.4.md)** - What's new in v0.1.4
-- **[Quick Start Guide](QUICKSTART.md)** - Get started in 2 minutes
+- https://github.com/scriptor-pro/memo-tori/releases/latest
+
+Local builds (from source):
+
+- Arch Linux (PKGBUILD): `bash scripts/build-arch.sh`
+- Debian/Ubuntu (.deb): `bash scripts/build-deb.sh`
+- AppImage: `bash scripts/build-appimage.sh`
+- RPM: `bash scripts/build-rpm.sh`
+
+RPM build prerequisites:
+
+- Debian/Ubuntu/MX:
+  - `sudo apt install -y rpm python3 python3-venv python3-pip`
+- Fedora/RHEL:
+  - `sudo dnf install -y rpm-build rpmdevtools python3 python3-pip`
+- Arch:
+  - `sudo pacman -S --needed rpm-tools python python-pip`
+
+Docs:
+
+- `QUICKSTART.md`
+- `docs/README.md`
 
 **System Requirements:**
 - Debian 11+, Ubuntu 20.04+, or compatible Linux distribution
@@ -23,7 +41,7 @@ Memo Tori is a tiny desktop app to capture a single idea and store it locally as
 
 **1. Install:**
 ```bash
-sudo dpkg -i memo-tori_0.1.4_amd64.deb
+sudo dpkg -i memo-tori_<version>_amd64.deb
 sudo apt-get install -f
 ```
 
@@ -127,7 +145,7 @@ cd C:\path\to\memo-tori
 Output:
 
 ```
-dist\memo-tori-0.1.0-setup.exe
+dist\memo-tori-<version>-setup.exe
 ```
 
 ## macOS (.app)

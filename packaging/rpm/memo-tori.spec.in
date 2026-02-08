@@ -1,0 +1,54 @@
+Name:           memo-tori
+Version:        @VERSION@
+Release:        1%{?dist}
+Summary:        Tiny desktop app to capture a single idea
+
+License:        MIT
+URL:            https://github.com/scriptor-pro/memo-tori
+Source0:        %{name}-%{version}.tar.gz
+
+BuildArch:      x86_64
+
+BuildRequires:  python3
+BuildRequires:  python3-pip
+
+Requires:       python3
+Requires:       python3-gobject
+Requires:       gtk3
+Requires:       webkit2gtk4.0
+
+%description
+Memo Tori is a tiny desktop app to capture a single idea and store it locally as plain text.
+
+%prep
+%setup -q
+
+%build
+
+%install
+mkdir -p %{buildroot}/opt/memo-tori
+cp -a memo-tori.py %{buildroot}/opt/memo-tori/
+cp -a i18n.py %{buildroot}/opt/memo-tori/
+cp -a VERSION %{buildroot}/opt/memo-tori/
+cp -a web %{buildroot}/opt/memo-tori/
+cp -a assets %{buildroot}/opt/memo-tori/
+cp -a requirements.txt %{buildroot}/opt/memo-tori/
+
+python3 -m venv --system-site-packages %{buildroot}/opt/memo-tori/.venv
+%{buildroot}/opt/memo-tori/.venv/bin/pip install --no-cache-dir -r %{buildroot}/opt/memo-tori/requirements.txt
+
+install -Dm644 packaging/deb/memo-tori.desktop %{buildroot}/usr/share/applications/memo-tori.desktop
+install -Dm644 assets/icon.png %{buildroot}/usr/share/icons/hicolor/512x512/apps/memo-tori.png
+
+install -Dm755 /dev/stdin %{buildroot}/usr/bin/memo-tori <<'EOF'
+#!/usr/bin/env bash
+exec /opt/memo-tori/.venv/bin/python3 /opt/memo-tori/memo-tori.py "$@"
+EOF
+
+%files
+/opt/memo-tori
+/usr/bin/memo-tori
+/usr/share/applications/memo-tori.desktop
+/usr/share/icons/hicolor/512x512/apps/memo-tori.png
+
+%changelog

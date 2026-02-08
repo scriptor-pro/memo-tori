@@ -56,8 +56,20 @@ function updateCounter() {
   submitBtn.disabled = length === 0 || length > MAX_CHARS;
 }
 
+function revealPanel(panel) {
+  panel.classList.remove("hidden");
+  panel.classList.add("enter");
+  panel.addEventListener(
+    "animationend",
+    () => {
+      panel.classList.remove("enter");
+    },
+    { once: true }
+  );
+}
+
 function showForm() {
-  formView.classList.remove("hidden");
+  revealPanel(formView);
   listView.classList.add("hidden");
   textarea.focus();
   setTimeout(() => textarea.focus(), 50);
@@ -65,7 +77,7 @@ function showForm() {
 
 function showList() {
   formView.classList.add("hidden");
-  listView.classList.remove("hidden");
+  revealPanel(listView);
 }
 
 function truncate(text) {

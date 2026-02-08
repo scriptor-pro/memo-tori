@@ -33,7 +33,7 @@ cd memo-tori
 ### If using .deb package:
 
 ```bash
-sudo dpkg -i memo-tori_0.1.4_amd64.deb
+sudo dpkg -i memo-tori_0.1.7_amd64.deb
 sudo apt-get install -f  # Fix any missing dependencies
 ```
 

@@ -7,10 +7,21 @@ import webview
 from i18n import detect_language, get_translations
 
 BASE_DIR = Path(__file__).resolve().parent
+RESOURCE_DIR = Path(getattr(sys, "_MEIPASS", BASE_DIR))
 APP_ID = "memo-tori"
 
+
+def _resource_path(*parts: str) -> Path:
+    """Return a path to a bundled resource (PyInstaller-friendly)."""
+    rel = Path(*parts)
+    candidate = RESOURCE_DIR / rel
+    if candidate.exists():
+        return candidate
+    return BASE_DIR / rel
+
+
 # Read version from VERSION file
-VERSION_FILE = BASE_DIR / "VERSION"
+VERSION_FILE = _resource_path("VERSION")
 try:
     VERSION = VERSION_FILE.read_text(encoding="utf-8").strip()
 except (FileNotFoundError, IOError):
@@ -91,7 +102,7 @@ class Api:
         ideas.pop(original_index)
         _save_ideas(ideas)
         return {"ok": True}
-    
+
     def get_translations(self):
         """Return translations for the frontend."""
         return TRANSLATIONS
@@ -99,7 +110,7 @@ class Api:
 
 if __name__ == "__main__":
     DATA_DIR.mkdir(parents=True, exist_ok=True)
-    html_path = (BASE_DIR / "web" / "index.html").as_uri()
+    html_path = _resource_path("web", "index.html").as_uri()
     window_title = f"{TRANSLATIONS.get('window_title', 'Memo Tori')} {VERSION}"
     webview.create_window(window_title, html_path, js_api=Api(), width=700, height=800)
     webview.start()

@@ -31,6 +31,7 @@ if (-not (Test-Path $venvDir)) {
   --windowed `
   --add-data "$root\web;web" `
   --add-data "$root\assets;assets" `
+  --add-data "$root\VERSION;." `
   "$root\memo-tori.py"
 
 $exeSource = Join-Path $root "dist\memo-tori\memo-tori.exe"

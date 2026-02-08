@@ -46,12 +46,34 @@ if ! gh auth status &> /dev/null; then
     exit 1
 fi
 
-# Check if .deb package exists
+# Collect release assets
+ASSETS=()
+
+# .deb (required)
 DEB_FILE="dist/memo-tori_${VERSION}_amd64.deb"
 if [ ! -f "$DEB_FILE" ]; then
     echo "Error: Package file not found: $DEB_FILE"
     echo "Build it first with: bash scripts/build-deb.sh"
     exit 1
+fi
+ASSETS+=("$DEB_FILE")
+
+# AppImage (optional)
+APPIMAGE_FILE="dist/memo-tori-${VERSION}-x86_64.AppImage"
+if [ -f "$APPIMAGE_FILE" ]; then
+    ASSETS+=("$APPIMAGE_FILE")
+fi
+
+# Arch package (optional)
+ARCH_PKG_FILE="dist/arch/memo-tori-${VERSION}-1-x86_64.pkg.tar.zst"
+if [ -f "$ARCH_PKG_FILE" ]; then
+    ASSETS+=("$ARCH_PKG_FILE")
+fi
+
+# RPM package (optional)
+RPM_GLOB=(dist/rpm/RPMS/*/memo-tori-${VERSION}-*.rpm)
+if [ -f "${RPM_GLOB[0]}" ]; then
+    ASSETS+=("${RPM_GLOB[@]}")
 fi
 
 # Check if release notes exist
@@ -61,13 +83,13 @@ if [ ! -f "$RELEASE_NOTES" ]; then
     exit 1
 fi
 
-# Generate checksums
+# Generate checksums for all included assets
 CHECKSUMS_FILE="dist/checksums_${VERSION}.txt"
 echo "Generating checksums..."
-cd dist
-sha256sum "memo-tori_${VERSION}_amd64.deb" > "../${CHECKSUMS_FILE}"
-md5sum "memo-tori_${VERSION}_amd64.deb" >> "../${CHECKSUMS_FILE}"
-cd ..
+: > "$CHECKSUMS_FILE"
+
+sha256sum "${ASSETS[@]}" >> "$CHECKSUMS_FILE"
+md5sum "${ASSETS[@]}" >> "$CHECKSUMS_FILE"
 
 echo "Checksums saved to: $CHECKSUMS_FILE"
 echo ""
@@ -112,7 +134,9 @@ echo "=================================="
 echo "Title: $RELEASE_TITLE"
 echo "Tag: $TAG"
 echo "Assets:"
-echo "  - $DEB_FILE"
+for asset in "${ASSETS[@]}"; do
+  echo "  - $asset"
+done
 echo "  - $CHECKSUMS_FILE"
 echo ""
 
@@ -120,7 +144,7 @@ echo ""
 gh release create "$TAG" \
     --title "$RELEASE_TITLE" \
     --notes-file "$RELEASE_NOTES" \
-    "$DEB_FILE" \
+    "${ASSETS[@]}" \
     "$CHECKSUMS_FILE"
 
 if [ $? -eq 0 ]; then

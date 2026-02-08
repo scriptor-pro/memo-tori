@@ -17,7 +17,11 @@ env/
 build/
 *.egg-info/
 
-# Distribution artifacts (keep latest only, ignore old builds)
+# Distribution artifacts
+# Keep installers/packages out of git; publish them via GitHub Releases instead.
+dist/
+
+# (Legacy explicit ignores kept for compatibility)
 dist/*.deb
 dist/memo-tori_*/
 dist/checksums_*.txt

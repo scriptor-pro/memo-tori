@@ -5,6 +5,21 @@ All notable changes to Memo Tori will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.1.7] - 2026-02-08
+
+### Added
+- GitHub Actions macOS packaging workflow to build and attach a DMG to releases.
+- GitHub Actions Windows workflow now attaches the installer to the GitHub Release.
+- Release workflow now builds and uploads an AppImage for Linux tag releases.
+- RPM packaging: spec template and build script.
+
+### Fixed
+- UI view switching: hidden panels no longer keep layout space; add entrance animation.
+- Frozen builds (PyInstaller): resolve bundled resources (VERSION and web UI) via `_MEIPASS`.
+
+### Changed
+- Repository hygiene: stop tracking `dist/` outputs and local virtual environments; release artifacts live in GitHub Releases.
+
 ## [0.1.4] - 2025-12-29 "Beaufix"
 
 **Codename:** Beaufix (Beautiful + Fix)  
@@ -201,4 +216,3 @@ This major feature release brings full bilingual support (English/French), unive
 - GitHub Actions workflow for Windows installer
 - MIT License
 - Comprehensive README with installation instructions
-
