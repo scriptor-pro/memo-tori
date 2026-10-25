@@ -1,10 +1,10 @@
 #!/bin/bash
-# Setup keyboard shortcut (Super+M) for Memo Tori across different desktop environments
+# Setup keyboard shortcut (Ctrl+Shift+H) for Hirameki across different desktop environments
 
 set -e
 
-SHORTCUT_KEY="Super+M"
-SHORTCUT_NAME="Launch Memo Tori"
+SHORTCUT_KEY="Ctrl+Shift+H"
+SHORTCUT_NAME="Launch Hirameki"
 
 # Detect if running from source or installed
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
@@ -28,7 +28,7 @@ else
 fi
 
 echo "=================================="
-echo "Memo Tori Keyboard Shortcut Setup"
+echo "Hirameki Keyboard Shortcut Setup"
 echo "=================================="
 echo ""
 echo "Shortcut: $SHORTCUT_KEY"
@@ -61,14 +61,14 @@ setup_xfce() {
     fi
     
     # Check if the shortcut already exists
-    EXISTING=$(xfconf-query -c xfce4-keyboard-shortcuts -p "/commands/custom/<Super>m" 2>/dev/null || true)
-    
+    EXISTING=$(xfconf-query -c xfce4-keyboard-shortcuts -p "/commands/custom/<Primary><Shift>h" 2>/dev/null || true)
+
     if [ -n "$EXISTING" ]; then
-        echo "Shortcut Super+M already exists in XFCE. Updating..."
-        xfconf-query -c xfce4-keyboard-shortcuts -p "/commands/custom/<Super>m" -s "$LAUNCH_COMMAND"
+        echo "Shortcut Ctrl+Shift+H already exists in XFCE. Updating..."
+        xfconf-query -c xfce4-keyboard-shortcuts -p "/commands/custom/<Primary><Shift>h" -s "$LAUNCH_COMMAND"
     else
         echo "Creating new shortcut..."
-        xfconf-query -c xfce4-keyboard-shortcuts -p "/commands/custom/<Super>m" --create -t string -s "$LAUNCH_COMMAND"
+        xfconf-query -c xfce4-keyboard-shortcuts -p "/commands/custom/<Primary><Shift>h" --create -t string -s "$LAUNCH_COMMAND"
     fi
     
     echo "✓ XFCE keyboard shortcut configured successfully!"
@@ -108,7 +108,7 @@ setup_gnome() {
     # Set the actual keybinding properties
     gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:$CUSTOM_PATH name "$SHORTCUT_NAME"
     gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:$CUSTOM_PATH command "$LAUNCH_COMMAND"
-    gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:$CUSTOM_PATH binding "<Super>m"
+    gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:$CUSTOM_PATH binding "<Primary><Shift>h"
     
     echo "✓ GNOME keyboard shortcut configured successfully!"
     return 0
@@ -124,25 +124,25 @@ setup_kde() {
     # Check if kwriteconfig5 is available for easier configuration
     if command -v kwriteconfig5 &> /dev/null; then
         # Create a new data group for our shortcut
-        GROUP_NAME="Data_memo_tori"
-        
+        GROUP_NAME="Data_hirameki"
+
         # Write the shortcut configuration
-        kwriteconfig5 --file khotkeysrc --group "$GROUP_NAME" --key Comment "Launch Memo Tori"
+        kwriteconfig5 --file khotkeysrc --group "$GROUP_NAME" --key Comment "Launch Hirameki"
         kwriteconfig5 --file khotkeysrc --group "$GROUP_NAME" --key DataCount 1
         kwriteconfig5 --file khotkeysrc --group "$GROUP_NAME" --key Enabled true
-        kwriteconfig5 --file khotkeysrc --group "$GROUP_NAME" --key Name "Memo Tori"
+        kwriteconfig5 --file khotkeysrc --group "$GROUP_NAME" --key Name "Hirameki"
         kwriteconfig5 --file khotkeysrc --group "$GROUP_NAME" --key SystemGroup 0
         kwriteconfig5 --file khotkeysrc --group "$GROUP_NAME" --key Type "ACTION_DATA_GROUP"
-        
-        kwriteconfig5 --file khotkeysrc --group "${GROUP_NAME}_1" --key Comment "Launch Memo Tori with Super+M"
+
+        kwriteconfig5 --file khotkeysrc --group "${GROUP_NAME}_1" --key Comment "Launch Hirameki with Ctrl+Shift+H"
         kwriteconfig5 --file khotkeysrc --group "${GROUP_NAME}_1" --key Enabled true
-        kwriteconfig5 --file khotkeysrc --group "${GROUP_NAME}_1" --key Name "Launch Memo Tori"
+        kwriteconfig5 --file khotkeysrc --group "${GROUP_NAME}_1" --key Name "Launch Hirameki"
         kwriteconfig5 --file khotkeysrc --group "${GROUP_NAME}_1" --key Type "SIMPLE_ACTION_DATA"
-        
+
         kwriteconfig5 --file khotkeysrc --group "${GROUP_NAME}_1Triggers" --key Comment "Simple_action"
         kwriteconfig5 --file khotkeysrc --group "${GROUP_NAME}_1Triggers" --key TriggersCount 1
-        
-        kwriteconfig5 --file khotkeysrc --group "${GROUP_NAME}_1Triggers0" --key Key "Meta+M"
+
+        kwriteconfig5 --file khotkeysrc --group "${GROUP_NAME}_1Triggers0" --key Key "Ctrl+Shift+H"
         kwriteconfig5 --file khotkeysrc --group "${GROUP_NAME}_1Triggers0" --key Type "SHORTCUT"
         kwriteconfig5 --file khotkeysrc --group "${GROUP_NAME}_1Triggers0" --key Uuid "{$(uuidgen)}"
         
@@ -166,7 +166,7 @@ setup_kde() {
         echo "Please configure manually:"
         echo "  System Settings → Shortcuts → Custom Shortcuts → Edit → New → Global Shortcut → Command/URL"
         echo "  Command: $LAUNCH_COMMAND"
-        echo "  Shortcut: Meta+M"
+        echo "  Shortcut: Ctrl+Shift+H"
         return 1
     fi
 }
@@ -202,7 +202,7 @@ setup_mate() {
     
     # Set the keybinding properties
     gsettings set org.mate.Marco.keybinding-commands "command-$NEW_INDEX" "$LAUNCH_COMMAND"
-    gsettings set org.mate.Marco.global-keybindings "run-command-$NEW_INDEX" "<Mod4>m"
+    gsettings set org.mate.Marco.global-keybindings "run-command-$NEW_INDEX" "<Control><Shift>h"
     
     echo "✓ MATE keyboard shortcut configured successfully!"
     return 0
@@ -238,7 +238,7 @@ setup_cinnamon() {
     gsettings set org.cinnamon.desktop.keybindings custom-list "$NEW_LIST"
     gsettings set org.cinnamon.desktop.keybindings.custom-keybinding:/org/cinnamon/desktop/keybindings/custom-keybindings/$CUSTOM_NAME/ name "$SHORTCUT_NAME"
     gsettings set org.cinnamon.desktop.keybindings.custom-keybinding:/org/cinnamon/desktop/keybindings/custom-keybindings/$CUSTOM_NAME/ command "$LAUNCH_COMMAND"
-    gsettings set org.cinnamon.desktop.keybindings.custom-keybinding:/org/cinnamon/desktop/keybindings/custom-keybindings/$CUSTOM_NAME/ binding "['<Super>m']"
+    gsettings set org.cinnamon.desktop.keybindings.custom-keybinding:/org/cinnamon/desktop/keybindings/custom-keybindings/$CUSTOM_NAME/ binding "['<Control><Shift>h']"
     
     echo "✓ Cinnamon keyboard shortcut configured successfully!"
     return 0
@@ -266,16 +266,16 @@ setup_i3() {
     fi
     
     # Check if the binding already exists
-    if grep -q "bindsym \$mod+m exec.*memo-tori" "$I3_CONFIG" 2>/dev/null; then
-        echo "Shortcut Mod+M already exists in config. Updating..."
-        sed -i "s|bindsym \$mod+m exec.*memo-tori.*|bindsym \$mod+m exec $LAUNCH_COMMAND|" "$I3_CONFIG"
+    if grep -Eq "bindsym Control\+Shift\+h exec.*memo-tori" "$I3_CONFIG" 2>/dev/null; then
+        echo "Shortcut Ctrl+Shift+H already exists in config. Updating..."
+        sed -E -i "s|bindsym Control\+Shift\+h exec.*memo-tori.*|bindsym Control+Shift+h exec $LAUNCH_COMMAND|" "$I3_CONFIG"
     else
         echo "Adding new shortcut to config..."
         echo "" >> "$I3_CONFIG"
-        echo "# Memo Tori keyboard shortcut (added by setup script)" >> "$I3_CONFIG"
-        echo "bindsym \$mod+m exec $LAUNCH_COMMAND" >> "$I3_CONFIG"
+        echo "# Hirameki keyboard shortcut (added by setup script)" >> "$I3_CONFIG"
+        echo "bindsym Control+Shift+h exec $LAUNCH_COMMAND" >> "$I3_CONFIG"
     fi
-    
+
     echo "✓ i3/Sway keyboard shortcut configured successfully!"
     echo "Note: Reload your i3/Sway config (Mod+Shift+R) for changes to take effect."
     return 0
@@ -302,7 +302,7 @@ setup_lxde() {
         # Use xmlstarlet to add the keybinding properly
         xmlstarlet ed --inplace \
             -s "/_:openbox_config/_:keyboard" -t elem -n "keybind" -v "" \
-            -i "//keybind[last()]" -t attr -n "key" -v "W-m" \
+            -i "//keybind[last()]" -t attr -n "key" -v "C-S-h" \
             -s "//keybind[last()]" -t elem -n "action" -v "" \
             -i "//keybind[last()]/action" -t attr -n "name" -v "Execute" \
             -s "//keybind[last()]/action" -t elem -n "command" -v "$LAUNCH_COMMAND" \
@@ -319,7 +319,7 @@ setup_lxde() {
         echo "Warning: xmlstarlet not found. Manual configuration required."
         echo "Add this to $OPENBOX_CONFIG in the <keyboard> section:"
         echo ""
-        echo "  <keybind key=\"W-m\">"
+        echo "  <keybind key=\"C-S-h\">"
         echo "    <action name=\"Execute\">"
         echo "      <command>$LAUNCH_COMMAND</command>"
         echo "    </action>"
@@ -373,5 +373,5 @@ esac
 
 echo ""
 echo "=================================="
-echo "Setup complete! Press Super+M to launch Memo Tori."
+echo "Setup complete! Press Ctrl+Shift+H to launch Hirameki."
 echo "=================================="

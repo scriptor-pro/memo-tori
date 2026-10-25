@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="128" height="128" viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Hirameki icon">
+  <defs>
+    <radialGradient id="burst" cx="50%" cy="42%" r="65%">
+      <stop offset="0%" stop-color="#3D5FE0"/>
+      <stop offset="55%" stop-color="#002FA7"/>
+      <stop offset="100%" stop-color="#001F73"/>
+    </radialGradient>
+    <linearGradient id="bolt" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="100%" stop-color="#FFE68A"/>
+    </linearGradient>
+  </defs>
+
+  <rect x="8" y="8" width="112" height="112" rx="24" fill="url(#burst)"/>
+
+  <!-- fines lignes de rayonnement, point d'origine au centre -->
+  <g stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" opacity="0.55">
+    <line x1="64" y1="64" x2="64" y2="22" />
+    <line x1="64" y1="64" x2="97" y2="40" />
+    <line x1="64" y1="64" x2="106" y2="64" />
+    <line x1="64" y1="64" x2="94" y2="93" />
+    <line x1="64" y1="64" x2="34" y2="93" />
+    <line x1="64" y1="64" x2="22" y2="64" />
+    <line x1="64" y1="64" x2="31" y2="40" />
+  </g>
+  <g stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" opacity="0.3">
+    <line x1="64" y1="64" x2="80" y2="16" />
+    <line x1="64" y1="64" x2="112" y2="80" />
+    <line x1="64" y1="64" x2="48" y2="112" />
+    <line x1="64" y1="64" x2="16" y2="48" />
+  </g>
+
+  <!-- éclair jaillissant du point central -->
+  <path d="M70 26 L48 68 L62 68 L56 102 L84 58 L68 58 Z" fill="url(#bolt)" stroke="#001F73" stroke-width="2" stroke-linejoin="round"/>
+
+  <!-- point d'origine du flash -->
+  <circle cx="64" cy="64" r="4.5" fill="#FFFFFF"/>
+</svg>

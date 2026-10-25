@@ -6,11 +6,13 @@ Get up and running with Memo Tori in **2 minutes**!
 
 ## 📦 Step 1: Download
 
-**Latest version:** v0.1.4 "Beaufix" (December 29, 2025)
+**Latest version:** v0.2.0
 
 ### Option A: .deb Package (Recommended for Debian/Ubuntu)
 
-Download: `memo-tori_0.1.4_amd64.deb` (3.1 MB)
+Download from GitHub Releases: https://github.com/scriptor-pro/memo-tori/releases/latest
+
+File: `memo-tori_0.2.0_amd64.deb`
 
 **Compatible with:**
 - Debian 11+
@@ -33,7 +35,7 @@ cd memo-tori
 ### If using .deb package:
 
 ```bash
-sudo dpkg -i memo-tori_0.1.7_amd64.deb
+sudo dpkg -i memo-tori_0.2.0_amd64.deb
 sudo apt-get install -f  # Fix any missing dependencies
 ```
 
@@ -105,7 +107,7 @@ MEMO_TORI_LANG=fr memo-tori
 
 ## ✅ You're Ready!
 
-The window title should show: **"Memo Tori 0.1.4"**
+The window title should show: **"Memo Tori 0.2.0"**
 
 ### Now you can:
 
@@ -126,7 +128,7 @@ The window title should show: **"Memo Tori 0.1.4"**
 - **Installation Guide:** [docs/INSTALLATION_GUIDE.md](docs/INSTALLATION_GUIDE.md)
 - **Keyboard Shortcuts:** [docs/KEYBOARD_SHORTCUTS.md](docs/KEYBOARD_SHORTCUTS.md)
 - **Language Setup:** [docs/LOCALIZATION.md](docs/LOCALIZATION.md)
-- **Release Notes:** [RELEASE_NOTES_0.1.4.md](RELEASE_NOTES_0.1.4.md)
+- **Release Notes:** [RELEASE_NOTES_0.2.0.md](RELEASE_NOTES_0.2.0.md)
 - **Changelog:** [CHANGELOG.md](CHANGELOG.md)
 
 ---
@@ -196,14 +198,13 @@ locale
 
 ---
 
-## ✨ What's New in v0.1.4?
+## ✨ What's New in v0.2.0?
 
-- 🌍 **English and French UI**
-- ⌨️ **Universal keyboard shortcuts**
-- 🏷️ **Version display in window title**
-- 📚 **Comprehensive documentation**
+- ✍️ **Better writing feel** (IBM Plex Mono for the capture field)
+- 🧩 **Modern UI typography** (Inter for the interface)
+- 📦 **Improved packaging** (AppImage on tag releases, macOS DMG, Windows installer on Releases)
 
-See [RELEASE_NOTES_0.1.4.md](RELEASE_NOTES_0.1.4.md) for full details.
+See [RELEASE_NOTES_0.2.0.md](RELEASE_NOTES_0.2.0.md) for full details.
 
 ---
 

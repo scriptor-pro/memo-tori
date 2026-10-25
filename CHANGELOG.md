@@ -5,6 +5,14 @@ All notable changes to Memo Tori will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.2.0] - 2026-02-08
+
+### Added
+- Typography pairing: Inter for UI and IBM Plex Mono for the idea capture field.
+
+### Changed
+- Font preview includes the chosen pairing and additional mono options (`web/font-preview.html`).
+
 ## [0.1.7] - 2026-02-08
 
 ### Added

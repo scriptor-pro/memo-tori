@@ -109,7 +109,7 @@ Once GitHub Actions completes (or after manual release):
 
 ### How It Works
 
-When you push a version tag (e.g., `v0.1.7`), GitHub Actions automatically:
+When you push a version tag (e.g., `v0.2.0`), GitHub Actions automatically:
 
 1. **Checks out code** from the tag
 2. **Sets up Python** and installs dependencies
@@ -218,19 +218,19 @@ If you prefer using GitHub's web interface:
 
 ### Step 2: Create Tag
 
-- **Tag version:** `v0.1.7`
+- **Tag version:** `v0.2.0`
 - **Target:** `main` (or appropriate branch)
 
 ### Step 3: Add Title and Description
 
-- **Release title:** `Memo Tori v0.1.7`
-- **Description:** Copy content from `RELEASE_NOTES_0.1.7.md`
+- **Release title:** `Memo Tori v0.2.0`
+- **Description:** Copy content from `RELEASE_NOTES_0.2.0.md`
 
 ### Step 4: Upload Assets
 
 Drag and drop or browse to upload:
-- `dist/memo-tori_0.1.7_amd64.deb`
-- `dist/checksums_0.1.7.txt`
+- `dist/memo-tori_0.2.0_amd64.deb`
+- `dist/checksums_0.2.0.txt`
 
 ### Step 5: Publish
 
@@ -306,12 +306,12 @@ Use this checklist for each release:
 
 **If local:**
 ```bash
-git tag -d v0.1.7  # Delete local tag
+git tag -d v0.2.0  # Delete local tag
 ```
 
 **If remote:**
 ```bash
-git push --delete origin v0.1.7  # Delete remote tag
+git push --delete origin v0.2.0  # Delete remote tag
 ```
 
 Then recreate and push again.
@@ -371,7 +371,7 @@ chmod +x scripts/build-deb.sh
 ### Semantic Versioning
 
 Follow [SemVer](https://semver.org/):
-- **MAJOR.MINOR.PATCH** (e.g., 0.1.7)
+- **MAJOR.MINOR.PATCH** (e.g., 0.2.0)
 - **MAJOR:** Breaking changes
 - **MINOR:** New features (backward compatible)
 - **PATCH:** Bug fixes (backward compatible)
@@ -441,29 +441,29 @@ Good release notes include:
 
 ## Example: Complete Release Process
 
-Here's a complete example of releasing v0.1.7:
+Here's a complete example of releasing v0.2.0:
 
 ```bash
 # 1. Update version
-echo "0.1.7" > VERSION
+echo "0.2.0" > VERSION
 
 # 2. Update CHANGELOG.md
 # (edit manually)
 
 # 3. Create release notes
-# (create RELEASE_NOTES_0.1.7.md)
+# (create RELEASE_NOTES_0.2.0.md)
 
 # 4. Prepare release
 bash scripts/prepare-release.sh
 
 # 5. Commit
-git add VERSION CHANGELOG.md RELEASE_NOTES_0.1.7.md
-git commit -m "Release v0.1.7"
+git add VERSION CHANGELOG.md RELEASE_NOTES_0.2.0.md
+git commit -m "Release v0.2.0"
 git push origin main
 
 # 6. Tag and push (triggers GitHub Actions)
-git tag -a v0.1.7 -m "Release 0.1.7"
-git push origin v0.1.7
+git tag -a v0.2.0 -m "Release 0.2.0"
+git push origin v0.2.0
 
 # 7. Wait for GitHub Actions to complete
 # 8. Verify release at: https://github.com/YOUR_USERNAME/memo-tori/releases

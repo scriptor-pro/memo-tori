@@ -9,8 +9,8 @@
   <body>
     <main class="app">
       <header class="brand">
-        <!--<h1>Memo Tori</h1> -->
-
+        <p class="eyebrow">Capture rapide</p>
+        <h1>Memo Tori</h1>
       </header>
 
       <section class="panel" id="form-view">
@@ -18,8 +18,10 @@
         <div class="meta">
           <span id="counter" data-i18n-counter>0 / 5000</span>
         </div>
-        <button id="submit" data-i18n-text="submit_button">Capturer cette idée</button>
-        <button class="secondary" id="show-list" data-i18n-text="show_list_button">Les idées</button>
+        <div class="actions">
+          <button id="submit" data-i18n-text="submit_button">Capturer cette idée</button>
+          <button class="secondary" id="show-list" data-i18n-text="show_list_button">Les idées</button>
+        </div>
         <p class="error" id="form-error" aria-live="polite"></p>
       </section>
 
